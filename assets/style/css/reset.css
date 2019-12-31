@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/*
+* 重置浏览器默认样式
+*/
+img {
+  border: 0; vertical-align: middle;
+  object-fit: cover;  /*设置图片铺满容器，必须指定高度*/
+}
+ul,ol,li{  list-style:none;  }
+
+a, button, input{
+  outline:none;
+}
+button{
+  border: none;
+  background-color: #fff;
+  padding: 0;
+}
+button:enabled{
+  cursor: pointer;
+}
+label:hover{
+  cursor: pointer;
+}
+

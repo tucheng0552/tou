@@ -1,0 +1,611 @@
+@charset "UTF-8";
+
+// -------------------------- 颜色变量  ------------------
+
+//  颜色
+$b0: #fff;  //  白色
+$b1: #faf9f7;
+$b2: #f5f4f2;
+$b3: #e6e5e3; //  分割线颜色，按钮不可点击状态
+$t1: #3d3a27; //  标题文字，内容文本
+$t2: #66624e;
+$t3: #8f8c7e;
+$t4: #ffdc2e; //  主题色，LOGO
+$t4-0: #FFEA82; //  日历选中区间（淡）
+//$t4-1: #E6C629; //  按钮点击颜色
+$t5: #ff6262; //  着重色
+$t6: #5ca0dc;
+
+$desktop-width: '(min-width: 1088px)';  //  桌面设备最小宽度
+$touch-width: '(max-width: 1087px)';  //  触屏设备最大宽度
+
+//  ------------------------  基础混合器 -------------------
+//  字体样式，参数分别为字体大小（默认12px）行高（默认1）字间距（默认0）颜色
+@mixin font-style($size: .75rem, $height: 1, $spacing: 0, $color: $t1){
+  font-size: $size;
+  line-height: $height;
+  letter-spacing: $spacing;
+  color: $color;
+}
+
+//  背景图片
+@mixin bg-image($url, $width, $height, $top: 0, $left: 0){
+  background-image: url($url);
+  background-size: $width, $height;
+  background-position: $top, $left;
+  background-repeat: no-repeat;
+}
+
+//单行文本溢出
+@mixin one-line-hidden{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 多行文本溢出（参数为number）
+@mixin more-line-hidden($line: 2){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+
+.l-user-info-face{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/*****************************  房型详情页布局  **********************************/
+.l-house-index{
+  padding: 0 .5rem 48px .5rem;
+}
+.l-house-index-head{
+  >h2{
+    margin-top: 24px;
+    font-weight: bold;
+    @include font-style(24px, 33px);
+  }
+  .head-logo{
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    .logo-left{
+      flex: 1;
+      padding: 4px 0;
+      >h6{
+        margin-bottom: 12px;
+        @include font-style(16px);
+      }
+      >p{
+        @include font-style(12px, $color:$t2);
+        >span{
+          color: $t6;
+        }
+      }
+    }
+    .logo-face{
+      &:hover{
+        cursor: pointer;
+      }
+      >img{
+        @extend .l-user-info-face
+      }
+    }
+
+  }
+  .head-activity{
+    display: block;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    background-color: $b1;
+    &:hover{
+      cursor: pointer;
+    }
+    .activity-content{
+      display: flex;
+      position: relative;
+      padding: 8px;
+      >span{
+        display: block;
+        padding: 0 4px 0 24px;
+        @include bg-image('~assets/image/icon/details_icon_promotions.png', 16px, 16px, 4px);
+        @include font-style(10px, 24px, $color:$b0);
+        border-radius: 2px;
+        background-color: $t5;
+      }
+      .days{
+        display: flex;
+        padding: 0 8px;
+        >li{
+          padding: 0 4px;
+          @include font-style(12px, 24px);
+        }
+      }
+      >i{
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 6px;
+        height: 24px;
+        @include bg-image('~assets/image/icon/global_icon_list_arrow.png', 6px, 12px);
+      }
+    }
+  }
+  .head-list{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-top: 1px solid $b3;
+    border-bottom: 1px solid $b3;
+    >li{
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      text-align: center;
+      margin: 8px 0;
+      >i{
+        width: 42px;
+        height: 42px;
+        margin: 0 auto;
+      }
+      >span{
+        margin-top: 8px;
+        @include font-style(14px, $color:$t2);
+      }
+    }
+  }
+}
+.l-house-index-info{
+  padding: 24px 0;
+  .info-translate{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    @include font-style(14px, $color:$t2);
+    >button{
+      @include font-style(14px, $color:$t6);
+    }
+  }
+  >h4{
+    @include font-style(16px);
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  >p{
+    display: flex;
+    @include font-style(16px, 26px);
+  }
+  .more{
+    height: 104px;
+    overflow: hidden;
+    &:after{
+      align-self: flex-end;
+      content: '...';
+    }
+  }
+}
+.l-house-index-bad{
+  border-top: 1px solid $b3;
+  padding: 24px 0;
+  >h4{
+    @include font-style(16px);
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .bad-list{
+    display: flex;
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    >li{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $b3;
+      border-radius: 4px;
+      margin-right: 16px;
+      text-align: left;
+      padding: 16px 16px 46px 16px;
+      @include font-style(14px);
+      >img{
+        width: 42px;
+        height: 42px;
+      }
+      /*i{
+        width: 42px;
+        height: 42px;
+      }*/
+      >h6{
+        margin: 14px 0 8px 0;
+      }
+      >p{
+        color: $t2;
+        word-break:keep-all;
+        white-space:nowrap;
+      }
+    }
+  }
+}
+.l-house-index-address{
+  border-top: 1px solid $b3;
+  padding: 24px 0;
+  .address-icon{
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 25px;
+    >li{
+      width: 16%;
+      height: 30px;
+      text-align: center;
+      >img{
+        width: 30px;
+        margin: 0 auto;
+      }
+      @include font-style(24px, 30px, $color:$t6);
+    }
+  }
+  .address-map{
+    position: relative;
+    cursor: pointer;
+    >img{
+      width: 100%;
+      height: 228px;
+    }
+    .map-mark{
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      .mark-info{
+        position: relative;
+        margin: 0 auto;
+        padding: 8px 12px;
+        background-color: $b0;
+        border: 1px solid $b3;
+        border-radius: 4px;
+        >p{
+          white-space:nowrap;
+          @include font-style(16px);
+          margin-bottom: 8px;
+        }
+        >span{
+          @include font-style(12px, $color:$t2);
+        }
+        &:after{
+          content:"";
+          position:absolute;
+          bottom:-16px;
+          left: 50%;
+          transform: translateX(-25%);
+          width:0;
+          height:0;
+          border:8px solid transparent;
+          border-top:8px solid $b0;
+        }
+      }
+      .mark-circle{
+        margin: 8px auto;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 1px solid $t6;
+        background-color: rgba(92,160,220,0.20);
+      }
+    }
+  }
+}
+.l-house-index-comments{
+  border-top: 1px solid $b3;
+  .comments-title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 23px;
+    >h4{
+      @include font-style(18px);
+    }
+    .all{
+      @include bg-image('~assets/image/icon/global_icon_list_arrow.png', 6px, 12px, $top:100%, $left:100%);
+      @include font-style(14px, $color:$t3);
+      padding: 2px 10px 2px 0;
+    }
+  }
+  .comments-msg{
+    >li{
+      padding: 16px 0 24px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid $b3;
+      }
+    }
+    .msg-info{
+      display: flex;
+      >img{
+        margin-right: 8px;
+        @extend .l-user-info-face
+      }
+      .info-head{
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        .head-left{
+          padding: 5px 0;
+          >h6{
+            @include font-style(16px);
+            margin-bottom: 8px;
+          }
+          >p{
+            @include font-style(14px, $color:$t2);
+          }
+        }
+        .head-right{
+          display: flex;
+          align-items: center;
+          >i{
+            @include font-style(14px, $color:$t2);
+            padding-left: 21px;
+          }
+        }
+      }
+    }
+    .msg-txt{
+      margin-top: 16px;
+      @include font-style(18px, 26px);
+    }
+    .msg-all{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      >button{
+        @include font-style(16px, $color:$t6);
+      }
+    }
+  }
+  .comments-add{
+    padding: 24px 0;
+    >button{
+      @include font-style(18px, $color:$t6);
+    }
+  }
+}
+.l-house-index-doc{
+  .doc-items{
+    display: flex;
+    flex-direction: column;
+    >li{
+      cursor: pointer;
+      padding: 24px 0;
+      border-top: 1px solid $b3;
+      @include font-style(18px);
+      &:hover{
+        background-color: $b1;
+      }
+    }
+  }
+}
+
+.l-house-date{
+  margin-left: 32px;
+  padding: 1rem .5rem;
+  .date{
+    width: 368px;
+    border: 1px solid $b3;
+    padding: 8px 0;
+    .date-head{
+      padding: 0 16px;
+      .price{
+        @include font-style(12px, 24px, $color:$t3);
+        .currency{
+          @include font-style(14px, 24px, $color:$t5)
+        }
+        .lowest{
+          @include font-style(24px, $color:$t5)
+        }
+      }
+      .rate{
+        display: flex;
+        align-items: center;
+        .text{
+          @include font-style(10px, $color:$t3)
+        }
+      }
+    }
+    .date-main{
+      padding: 0 16px;
+      .main-title{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 8px;
+        margin: 24px 0;
+        border: 1px solid $b3;
+        >p{
+          flex-grow: 1;
+          text-align: left;
+          @include font-style(16px)
+        }
+      }
+      .main-foot{
+        .clear{
+          @include font-style(12px, $color:$t6)
+        }
+      }
+    }
+    .date-sub{
+      padding: 24px 16px;
+      >button{
+        width: 100%;
+        height: 48px;
+        background-color: $t4;
+        border-radius: 4px;
+        @include font-style(18px, 48px);
+        &:disabled{
+          color: $b0;
+          background-color: $b1;
+        }
+      }
+    }
+    .date-room-type{
+      position: relative;
+      .my-swiper{
+        .swiper-slide{
+          width: 92%;
+          margin: 0 4px;
+          .image{
+            position: relative;
+            &:hover{
+              cursor: pointer;
+            }
+            >img{
+              border-top-left-radius: 8px;
+              border-top-right-radius: 8px;
+            }
+            .txt{
+              width: 100%;
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              display: flex;
+              justify-content: space-between;
+              padding: 8px;
+              .left{
+                >p{
+                  @include font-style(16px, $color:$b0);
+                  >span{
+                    border-radius: 8px;
+                    background-color: $b0;
+                    padding: 0 6px;
+                    @include font-style(10px, 16px, $color:$t2);
+                  }
+                }
+                .price{
+                  margin-top: 8px;
+                  @include font-style(20px, $color:$b0)
+                }
+              }
+              .right{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                >img{
+                  position: relative;
+                  width: 24px;
+                  height: 24px;
+                  cursor: pointer;
+                }
+                .right-num{
+                  @include font-style(20px, $color:$b0);
+                  padding: 0 12px;
+                }
+
+              }
+            }
+          }
+          .details{
+            border: 1px solid $b2;
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding: 12px 8px 36px 8px;
+            &:hover{
+              cursor: pointer;
+            }
+            .items{
+              display: flex;
+              position: relative;
+              >li{
+                margin-right: 28px;
+                height: 30px;
+                text-align: center;
+                &.more{
+                  margin-right: 0;
+                  position: absolute;
+                  right: 0;
+                }
+                >img{
+                  width: 30px;
+                  margin: 0 auto;
+                }
+                @include font-style(16px, 30px, $color:$t6);
+              }
+            }
+            .txt{
+              margin-top: 12px;
+            }
+          }
+        }
+      }
+      .sub{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        transform: translateY(50%);
+        z-index: 9;
+        align-items: center;
+        >span{
+          padding: 10px 24px;
+          background-color: #F7EDED;;
+          @include font-style(14px, $color:$t2);
+          &:first-child{
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+          }
+          &:last-child{
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+          }
+        }
+        >button{
+          padding: 12px 36px;
+          border-radius: 4px;
+          background-color: $t4;
+          @include font-style(16px)
+        }
+      }
+    }
+  }
+}
+
+/*****************************  模态框 ***************************/
+.l-user-list-modal{
+  .modal-main{
+    padding: 16px;
+    >h2{
+      @include font-style(24px)
+    }
+    .main-items{
+      >li{
+        padding: 16px 0;
+        display: flex;
+        &:not(:last-child){
+          border-bottom: 1px solid $b3;
+        }
+        >img{
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+        .info{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 5px 0;
+          >h6{
+            @include font-style(16px)
+          }
+          >p{
+            @include font-style(14px, $color:$t2)
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,509 @@
+@charset "UTF-8";
+
+@import "base"; //  导入基础配置
+
+/*  bulma */
+@media screen and (min-width: 1472px){
+  .container {
+    max-width: 1152px !important;
+    width: 1152px !important;
+  }
+}
+
+@media screen and #{$desktop-width}{
+  .modal{
+    .modal-content{
+      min-height: 45%;
+    }
+  }
+}
+
+@media screen and #{$touch-width}{
+  .modal-content{
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+.modal{
+  z-index: 999 !important;
+  .modal-background{
+    background-color: rgba(255, 255, 255, .8);
+  }
+  .modal-content{
+    background-color: $b0;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.12);
+    border-radius: 4px;
+  }
+  .modal-head{
+    display: flex;
+    align-items: center;
+    //height: 56px;
+    padding: 9px 16px;
+    .close-btn{
+      width: 24px;
+      height: 24px;
+      @include bg-image('~assets/image/icon/nav_icon_close_nor.png', 24px, 24px);
+    }
+    .back-btn{
+      width: 24px;
+      height: 24px;
+      @include bg-image('~assets/image/icon/nav_icon_back_nor.png', 24px, 24px);
+
+    }
+  }
+}
+
+/*  命名空间  */
+/*
+.l-: 布局(layouts)
+.o-: 对象(objects)
+.c-: 组件(components)
+.js: js的钩子(JavaScript hooks)
+.is-|.has-: 状态类(state classes)
+.t1|.s1: 排版大小(typography sizes)
+.u-: 实用类(utility classes)
+*/
+
+@font-face {
+  /* font-properties */
+  font-family: 'price-number';
+  src:
+    url('../../../static/Fonts/DIN-Bold.otf'),
+    url('../../../static/Fonts/DIN-Light.otf'),
+    url('../../../static/Fonts/DIN-Regular.otf');
+}
+
+.u-price-num{
+  font-family: 'price-number';
+}
+
+//  评价星级（空）
+.u-big-star-nor{
+  @include bg-image('../../image/icon/global_icon_big_star_nor.png', 20px, 20px)
+}
+//  评价星级（全）
+.u-big-star-sle{
+  @include bg-image('../../image/icon/global_icon_big_star_sle.png', 20px, 20px)
+}
+//  评分星级（空）
+.u-icon-star-nor{
+  @include bg-image('../../image/icon/global_icon_small_star_nor.png', 10px, 10px)
+}
+//  评分星级（半）
+.u-icon-star-half{
+  @include bg-image('../../image/icon/global_icon_small_star_half.png', 10px, 10px)
+}
+//  评分星级（全）
+.u-icon-star-sle{
+  @include bg-image('../../image/icon/global_icon_small_star_sle.png', 10px, 10px)
+}
+//  红色实心
+.u-icon-list-like-sle{
+  @include bg-image('../../image/icon/global_icon_list_like_sle.png', 17px, 17px);
+}
+//  红色空心
+.u-icon-list-like{
+  @include bg-image('../../image/icon/global_icon_list_like.png', 17px, 17px);
+  &:hover{
+    cursor: pointer;
+  }
+}
+//  棕色消息
+.u-icon-list-comments{
+  @include bg-image('../../image/icon/global_icon_list_comments.png', 17px, 17px);
+}
+//  民宿详情房客
+.u-icon-bnb-details-roomer{
+  @include bg-image('../../image/icon/bnb_details_layout_icon_roomer.png', 42px, 42px)
+}
+//  民宿详情房间
+.u-icon-bnb-details-bedroom{
+  @include bg-image('../../image/icon/bnb_details_layout_icon_bedroom.png', 42px, 42px)
+}
+//  民宿详情床
+.u-icon-bnb-details-bed{
+  @include bg-image('../../image/icon/bnb_details_layout_icon_bed.png', 42px, 42px)
+}
+//  民宿详情卫生间
+.u-icon-bnb-details-bathroom{
+  @include bg-image('../../image/icon/bnb_details_layout_icon_bathroom.png', 42px, 42px)
+}
+
+//  地理位置
+.u-icon-footprint-location-nor{
+  @include bg-image('../../image/icon/footprint_publish_icon_location_nor.png', 22px, 22px)
+}
+//  地理位置（高亮）
+.u-icon-footprint-location-sle{
+  @include bg-image('../../image/icon/footprint_publish_icon_location_sle.png', 22px, 22px)
+}
+//  房源
+.u-icon-footprint-room-nor{
+  @include bg-image('../../image/icon/footprint_publish_icon_room_nor.png', 22px, 22px)
+}
+//  房源（高亮）
+.u-icon-footprint-room-sle{
+  @include bg-image('../../image/icon/footprint_publish_icon_room_sle.png', 22px, 22px)
+}
+
+//  评论星级
+.u-items-star{
+  display: flex;
+  align-items: center;
+  margin: 0 !important;
+  >li{
+    width: 10px;
+    height: 10px;
+    margin: 0 3px 0 0 !important;
+  }
+}
+
+//  switch 开关
+.u-switch{
+  .switch-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    &+label {
+      display: block;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+    }
+  }
+  .switch-toggle-round{
+    &+label {
+      padding: 2px;
+      width: 56px;
+      height: 30px;
+      background-color: $b3;
+      border-radius: 60px;
+      &:before, &:after{
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+      }
+      &:before{
+        right: 1px;
+        background-color: $b3;
+        border-radius: 60px;
+        transition: background 0.4s;
+      }
+      &:after{
+        width: 28px;
+        background-color: $b0;
+        border-radius: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: margin 0.4s;
+      }
+    }
+    &:checked + label{
+      &:before{
+        background-color: $t4;
+      }
+      &:after{
+        margin-left: 25px;
+      }
+    }
+  }
+}
+
+//  checkbox
+.u-checkbox{
+  .checkbox-toggle{
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    &:checked+label{
+      @include bg-image('~assets/image/icon/global_checkbox_rectangle_sle.png', 22px, 22px)
+    }
+    &+label{
+      display: block;
+      position: relative;
+      width: 22px;
+      height: 22px;
+      outline: none;
+      user-select: none;
+      @include bg-image('~assets/image/icon/global_checkbox_rectangle_nor.png', 22px, 22px)
+    }
+  }
+}
+//  checkbox
+.u-checkbox-t6{
+  .checkbox-toggle{
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    &:checked+label{
+      @include bg-image('~assets/image/icon/global_icon_choice_sle.png', 22px, 22px)
+    }
+    &+label{
+      display: block;
+      position: relative;
+      width: 22px;
+      height: 22px;
+      outline: none;
+      user-select: none;
+      @include bg-image('~assets/image/icon/global_icon_choice_nor.png', 22px, 22px)
+    }
+  }
+}
+//  checkbox( round )
+.u-checkbox-round{
+  .checkbox-toggle{
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    &:checked+label{
+      @include bg-image('~assets/image/icon/global_checkbox_radior_sle.png', 24px, 24px)
+    }
+    &+label{
+      display: block;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      outline: none;
+      user-select: none;
+      @include bg-image('~assets/image/icon/global_checkbox_radior_nor.png', 24px, 24px)
+    }
+  }
+}
+
+.l-page-section{
+  padding: 0 .5rem 3rem .5rem;
+  min-height: 100vh;
+}
+
+.c-base-todoList{
+  width: 100%;
+  .todoList-title{
+    padding: 3rem 0 .5rem .5rem;
+    @include font-style(24px);
+    font-weight: bold;
+  }
+  .todoList-items{
+    flex-wrap: wrap;
+    margin: 0;
+    .swiper-container{
+      width: 100%;
+    }
+    /**************************                       首页基础列表                      ***********************/
+    .item{
+      padding: 0 .5rem;
+      .item-card{
+        display: block;
+        padding: 1rem 0;
+        .card-banner{
+          .image{
+            >img{
+              border-radius: 4px;
+            }
+          }
+          .delete{
+            position: absolute;
+            z-index: 1;
+            right: .5rem;
+            top: .5rem;
+          }
+          .banner-type{
+            position: absolute;
+            right: .5rem;
+            bottom: .5rem;
+            background-color: $b0;
+            border-radius: 2px;
+            @include font-style(14px);
+            padding: .25rem .5rem;
+          }
+        }
+        .card-info{
+          padding: .5rem 0 0 0;
+          .info{
+            display: flex;
+            flex-direction: column;
+            .info-type{
+              display: flex;
+              justify-content: space-between;
+              max-width: 100%;
+              >span{
+                display: inline-block;
+                &:nth-of-type(1){
+                  max-width: 68%;
+                  @include one-line-hidden;
+                  @include font-style(12px, 16px, $color:$t6);
+                }
+                &:nth-of-type(2){
+                  padding: 0 (3rem/16);
+                  @include font-style(10px, 16px, $color:$b0);
+                  background-color: $t6;
+                }
+              }
+            }
+            .info-title{
+              height: 3rem;
+              margin: .5rem 0;
+              @include font-style(16px, 24px);
+              @include more-line-hidden;
+            }
+            .info-price{
+              margin: 0 0 .5rem 0;
+              @include font-style(10px, $color:$t3);
+              >i{
+                font-style: normal;
+                color: $t5;
+              }
+              .price-num{
+                @include font-style(16px, $color:$t5);
+              }
+              .price-hot{
+                @include font-style(10px, $color:$t5);
+                display: inline-block;
+                border: 1px solid $t5;
+                padding: 2px;
+                border-radius: 1px;
+              }
+            }
+            .info-evaluate{
+              display: flex;
+              .evaluate-num{
+                @include font-style(10px, $color:$t3);
+              }
+            }
+            /*  足迹部分  */
+            .info-city{
+              height: 3.25rem;
+              margin-bottom: .5rem;
+              @include font-style(16px, 26px);
+              @include more-line-hidden;
+            }
+            .info-face{
+              display: flex;
+              >img{
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+              }
+              >i{
+                padding-left: 19px;
+                margin: 0 6px;
+                font-style: normal;
+                @include font-style(14px,24px, $color:$t3);
+              }
+            }
+          }
+        }
+      }
+    }
+    /**************                   首页推荐列表              *****************/
+    .recommend{
+      .info-recommend{
+        display: flex;
+        justify-content: space-between;
+        .info-price{
+          margin: 0 !important;
+          .price-num{
+            @include font-style(24px !important);
+          }
+        }
+        .info-evaluate{
+          padding: 6px 0;
+        }
+      }
+      .info-name{
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0 0 0;
+        >img{
+          width: 42px;
+          height:42px;
+          border-radius: 50%;
+        }
+        .info-type{
+          max-width: 78% !important;
+          flex-direction: column;
+          >p{
+            margin-bottom: 12px;
+            line-height: 16px;
+            @include one-line-hidden
+          }
+          .type-sub{
+            max-width: 100% !important;
+            line-height: 12px !important;
+          }
+        }
+      }
+    }
+
+  }
+  .btn-all{margin-left: .5rem}
+}
+
+/*******************************************      度假地组件     ****************************************/
+.c-vacation-swiper{
+  .swiper-slide{
+    padding: 0 .5rem;
+    margin: 0;
+    .slide-item{
+      display: block;
+      padding: 1rem 0;
+      >p{
+        margin-top: .5rem;
+        @include font-style(14px,1, $color:$t2);
+        @include more-line-hidden;
+      }
+      .image{
+        >img{
+          border-radius: 4px;
+        }
+      }
+
+    }
+  }
+}
+
+/*******************************************      广告组件      ****************************************/
+.c-banner-swiper {
+  height: 192px;
+  .swiper-slide {
+    padding: 0 .5rem;
+    .swiper-item{
+      display: block;
+      >img{
+        min-width: 100%;
+        border-radius: 4px;
+      }
+      .item-info{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        padding: 0 12px;
+        bottom: 24px;
+        >h5{
+          @include font-style(20px, $color: $b0);
+          margin-bottom: 12px;
+        }
+        .info{
+          @include font-style(14px, $color: $b0);
+          @include more-line-hidden(3);
+        }
+        .type{
+          text-align: right;
+          >span{
+            padding: 1px;
+            border-radius: 2px;
+            border: 1px solid $b3;
+            @include font-style(10px, $color: $b0);
+          }
+        }
+      }
+    }
+  }
+  .swiper-pagination-bullet {
+    .swiper-pagination-bullet-active{
+      background-color: $b0;
+    }
+  }
+}
